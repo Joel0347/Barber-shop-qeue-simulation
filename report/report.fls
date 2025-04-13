@@ -1,4 +1,4 @@
-PWD C:\Users\Joel\Documents\GitHub\Barber-shop-qeue-simulation\report
+PWD c:\Users\Joel\Documents\GitHub\Barber-shop-qeue-simulation\report
 INPUT C:\Users\Joel\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
 INPUT c:\Users\Joel\Documents\GitHub\Barber-shop-qeue-simulation\report\report.tex
 OUTPUT report.log
@@ -74,6 +74,28 @@ INPUT C:\Program Files\MiKTeX\tex\latex\listings\lstmisc.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\listings\listings.cfg
 INPUT C:\Program Files\MiKTeX\tex\latex\listings\listings.cfg
 INPUT C:\Program Files\MiKTeX\tex\latex\listings\listings.cfg
+INPUT C:\Users\Joel\AppData\Roaming\MiKTeX\tex\latex\siunitx\siunitx.sty
+INPUT C:\Users\Joel\AppData\Roaming\MiKTeX\tex\latex\siunitx\siunitx.sty
+INPUT C:\Users\Joel\AppData\Roaming\MiKTeX\tex\latex\translations\translations.sty
+INPUT C:\Users\Joel\AppData\Roaming\MiKTeX\tex\latex\translations\translations.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\etoolbox\etoolbox.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\etoolbox\etoolbox.sty
+INPUT C:\Program Files\MiKTeX\tex\generic\pdftexcmds\pdftexcmds.sty
+INPUT C:\Program Files\MiKTeX\tex\generic\pdftexcmds\pdftexcmds.sty
+INPUT C:\Users\Joel\AppData\Roaming\MiKTeX\tex\generic\infwarerr\infwarerr.sty
+INPUT C:\Users\Joel\AppData\Roaming\MiKTeX\tex\generic\infwarerr\infwarerr.sty
+INPUT C:\Users\Joel\AppData\Roaming\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
+INPUT C:\Users\Joel\AppData\Roaming\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\color.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\color.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics-cfg\color.cfg
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics-cfg\color.cfg
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics-cfg\color.cfg
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\mathcolor.ltx
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\mathcolor.ltx
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\mathcolor.ltx
 INPUT C:\Program Files\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
 INPUT C:\Program Files\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
 INPUT .\report.aux
@@ -88,6 +110,9 @@ INPUT C:\Program Files\MiKTeX\tex\latex\epstopdf-pkg\epstopdf-base.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Program Files\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Program Files\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
+INPUT C:\Users\Joel\AppData\Roaming\MiKTeX\tex\latex\translations\dicts\translations-basic-dictionary-spanish.trsl
+INPUT C:\Users\Joel\AppData\Roaming\MiKTeX\tex\latex\translations\dicts\translations-basic-dictionary-spanish.trsl
+INPUT C:\Users\Joel\AppData\Roaming\MiKTeX\tex\latex\translations\dicts\translations-basic-dictionary-spanish.trsl
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmr17.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmr8.tfm
@@ -128,17 +153,10 @@ INPUT C:\Users\Joel\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmti12.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx8.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx6.tfm
-INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmtt12.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\jknappen\ec\tcrm1200.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
-INPUT ..\images\convergencia.png
-INPUT ..\images\convergencia.png
-INPUT ..\images\convergencia.png
-INPUT ..\images\convergencia.png
-INPUT ..\images\convergencia.png
-INPUT ..\images\convergencia.png
-INPUT ..\images\convergencia.png
-INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
-INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx7.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx5.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
@@ -147,28 +165,16 @@ INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam5.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm5.tfm
-INPUT ..\images\distribucion_espera.png
-INPUT ..\images\distribucion_espera.png
-INPUT ..\images\distribucion_espera.png
-INPUT ..\images\distribucion_espera.png
-INPUT ..\images\distribucion_espera.png
-INPUT ..\images\distribucion_espera.png
-INPUT ..\images\distribucion_espera.png
-INPUT ..\images\intervalo_confianza.png
-INPUT ..\images\intervalo_confianza.png
-INPUT ..\images\intervalo_confianza.png
-INPUT ..\images\intervalo_confianza.png
-INPUT ..\images\intervalo_confianza.png
-INPUT ..\images\intervalo_confianza.png
-INPUT ..\images\intervalo_confianza.png
-INPUT ..\images\hipotesis.png
-INPUT ..\images\hipotesis.png
-INPUT ..\images\hipotesis.png
-INPUT ..\images\hipotesis.png
-INPUT ..\images\hipotesis.png
-INPUT ..\images\hipotesis.png
-INPUT ..\images\hipotesis.png
+INPUT ..\images\hipotesis_rechazo.png
+INPUT ..\images\hipotesis_rechazo.png
+INPUT ..\images\hipotesis_rechazo.png
+INPUT ..\images\hipotesis_rechazo.png
+INPUT ..\images\hipotesis_rechazo.png
+INPUT ..\images\hipotesis_rechazo.png
+INPUT ..\images\hipotesis_rechazo.png
 INPUT report.aux
+INPUT C:\Users\Joel\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1200.pk
+INPUT C:\Users\Joel\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1200.pk
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx12.pfb
@@ -181,6 +187,8 @@ INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi12.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi12.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi6.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi6.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi7.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi7.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi8.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi8.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
@@ -189,6 +197,8 @@ INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr12.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr12.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr17.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr17.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr8.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr8.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
@@ -197,5 +207,3 @@ INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy8.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy8.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmti12.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmti12.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmtt12.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmtt12.pfb

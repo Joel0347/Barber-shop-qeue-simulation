@@ -8,7 +8,7 @@
 \usepackage{amssymb}
 \usepackage{float}
 \usepackage{listings}
-
+\usepackage{siunitx}
 
 \geometry{a4paper, margin=2.5cm}
 
@@ -44,7 +44,7 @@ en Dirección de Operaciones} en el cual se basa el modelo y notación utilizada
 \ 
 
 La peluquería m@ripuri está dirigida y gestionada únicamente por su 
-propietaria.. Atiende según el principio de que el primero que entra es el primero 
+propietaria. Atiende según el principio de que el primero que entra es el primero 
 que sale. La peluquería, dado su carácter cibernético está muy ocupada los 
 sábados por la mañana y la propietaria se plantea la posibilidad de contratar a una 
 ayudante. Así pues, hace un estudio y se da cuenta de que los clientes llegan con 
@@ -56,8 +56,6 @@ primero calcular el número medio de clientes en el salón y el número de medio
 clientes esperando un corte de pelo. Sólo tiene 4 sillas además del sillón de 
 peluquera, ¿cuál es la probabilidad de que llegue un cliente y no encuentre sitio?, 
 ¿cuál es la probabilidad de que alguien espere más de 45 minutos?
-
-\ 
 
 \subsection{Descripción del Proyecto}
 La peluquería M@ripuri opera como un sistema de colas mono-servidor con capacidad limitada $(M/M/1/K)$. El establecimiento posee:
@@ -89,156 +87,152 @@ El problema principal radica en determinar si la capacidad actual es suficiente 
 \end{itemize}
 
 \section{Implementación}
+El código de la solución utiliza simulación basada en eventos discretos con integración temporal para métricas. Los componentes principales son:
 
-El código de la solución está adjunto en el repositorio en el archivo \texttt{simulation.ipynb} en la raíz del proyecto.
 \subsection{Flujo de Simulación}
-El modelo sigue una estructura de cola \textbf{M/M/1/K} con capacidad finita ($K=5$) implementada mediante eventos discretos. El flujo se divide en 4 etapas clave:
-
 \begin{enumerate}
-    \item \textbf{Generación de llegadas}: Se crean tiempos entre llegadas usando distribución exponencial ($\lambda=5$/hora) mediante \texttt{np.random.exponential(1/5)}.
-    
-    \item \textbf{Asignación de servicio}: Cada cliente recibe un tiempo de servicio exponencial ($\mu=6$/hora) con \texttt{np.random.exponential(1/6)}.
-    
-    \item \textbf{Gestión de cola}: Implementación FIFO con:
+    \item \textbf{Inicialización}:
     \begin{itemize}
-        \item Verificación de sillas disponibles (\texttt{if len(queue) $<$ num\_chairs})
-        \item Actualización del estado del sistema en cada evento
-        \item Registro de tiempos de espera y ocupación
+        \item Generación del primer evento de llegada
+        \item Configuración inicial de métricas acumuladas
     \end{itemize}
     
-    \item \textbf{Recolección de métricas}: Se almacenan:
-    \begin{equation}
-        \text{waiting\_times} = \{t_{salida} - t_{llegada}\}\ \forall\ clientes
-    \end{equation}
+    \item \textbf{Bucle principal de eventos}:
+    \begin{itemize}
+        \item Procesamiento de llegadas y salidas en orden cronológico
+        \item Actualización de acumuladores de tiempo para métricas
+        \item Gestión de la cola FIFO con capacidad limitada
+    \end{itemize}
+    
+    \item \textbf{Post-procesamiento}:
+    \begin{itemize}
+        \item Cálculo de promedios temporales
+        \item Estimación de probabilidades
+        \item Análisis estadístico
+    \end{itemize}
 \end{enumerate}
 
-\subsection{Análisis Estadístico}
+\section{Análisis Estadístico}
 
-\ 
+A continuación veamos algunos análisis estadísticos interesantes.
 
-A continuación serán analizados la convergencia del sistema, la distribución de los tiempos de espera, 
-así como los intervalos de confianza. También se realizará una prueba de hipótesis interesante
+\subsection{Prueba de Hipótesis: 5 vs 6 Sillas}
+Para determinar si el aumento a 6 sillas reduce significativamente el rechazo de clientes, realizamos:
 
-\ 
-
-\subsubsection{Convergencia del Sistema}
 \begin{itemize}
-    \item \textbf{Método}: Ejecución secuencial de la simulación con duraciones crecientes (100-8760 horas)
-    \item \textbf{Parámetros}: Muestreo en 50 puntos temporales usando \texttt{np.linspace()}
-    \item \textbf{Propósito}: Verificar estabilidad del promedio de clientes (Fig. \ref{fig:convergencia})
+    \item \textbf{Hipótesis}:
+    \begin{align*}
+        H_0&: P_{\text{rechazo}}(5) = P_{\text{rechazo}}(6) \\
+        H_1&: P_{\text{rechazo}}(5) \ne P_{\text{rechazo}}(6)
+    \end{align*}
+    
+    \item \textbf{Diseño experimental}:
+    \begin{itemize}
+        \item 100 simulaciones anuales para cada configuración
+        \item Mismo conjunto de números aleatorios para ambas configuraciones
+        \item Nivel de confianza del 95\% ($\alpha = 0.05$)
+    \end{itemize}
+    
+    \item \textbf{Resultados}:
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{lcc}
+            \toprule
+            Métrica & 5 Sillas & 6 Sillas \\
+            \midrule
+            Media $P_{\text{rechazo}}$ & 9.98\% & 3.15\% \\
+            Desviación estándar & 1.2\% & 0.8\% \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    \item \textbf{Prueba t de Student}:
+    \begin{itemize}
+        \item $t_{\text{stat}} = 15.73$ (gl = 198)
+        \item $p$-value $< 0.0001$
+        \item Diferencia media: 6.83\% [IC95\%: 6.1\% - 7.5\%]
+    \end{itemize}
 \end{itemize}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/convergencia.png}
-    \caption{Convergencia del promedio de clientes vs tiempo de simulación. La línea roja marca el valor teórico ($\rho/(1-\rho)=5$). Se observa estabilización después de 200 horas, validando el tiempo de simulación elegido.}
-    \label{fig:convergencia}
-\end{figure}
-
-\subsubsection{Distribución de Esperas}
-\begin{itemize}
-    \item \textbf{Método}: Histograma KDE (Estimación de Densidad Kernel) con 50 bins
-    \item \textbf{Transformación}: Tiempos convertidos a minutos (\texttt{waiting\_hours*60})
-    \item \textbf{Hallazgo}: Distribución exponencial modificada con cola larga (Fig. \ref{fig:distribucion})
-\end{itemize}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{../images/distribucion_espera.png}
-    \caption{Distribución de tiempos de espera. El 39.7\% de los clientes (área bajo la curva azul a la derecha de 45min) supera el umbral crítico de 45 minutos.}
-    \label{fig:distribucion}
-\end{figure}
-
-\subsubsection{Intervalos de Confianza}
-\begin{itemize}
-    \item \textbf{Método}: 30 réplicas independientes de la simulación (2,000 horas cada una)
-    \item \textbf{Cálculo}: Intervalo del 95\% usando distribución t-Student:
-    \begin{equation}
-        CI = \bar{X} \pm t_{0.975,n-1} \times \frac{s}{\sqrt{n}}
-    \end{equation}
-    \item \textbf{Resultado}: [4.82, 5.16] clientes promedio (Fig. \ref{fig:intervalo})
-\end{itemize}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.6\textwidth]{../images/intervalo_confianza.png}
-    \caption{Intervalo de confianza al 95\% para el número promedio de clientes. El punto central representa la media muestral (4.99), las barras el error estándar.}
-    \label{fig:intervalo}
-\end{figure}
-
-\subsubsection{Prueba de Hipótesis}
-\begin{itemize}
-    \item \textbf{Hipótesis}: Añadir una silla (K=6) reduce significativamente la ocupación promedio
-    \item \textbf{Método}: 20 réplicas por configuración, prueba t-Student bilateral
-    \item \textbf{Visualización}: Diagrama de cajas comparativo (Fig. \ref{fig:hipotesis})
-    \item \textbf{Resultado}: p-valor = 0.0032 < 0.05 $\rightarrow$ Diferencia significativa
-\end{itemize}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{../images/hipotesis.png}
-    \caption{Comparación de configuraciones mediante boxplots. La línea central muestra la mediana, la caja el rango intercuartílico (25-75\%), y los bigotes el 95\% de los datos.}
+    \includegraphics[width=0.75\textwidth]{../images/hipotesis_rechazo.png}
+    \caption{Distribución de probabilidades de rechazo en ambas configuraciones. Se observa clara separación entre las distribuciones (solapamiento $<$ 0.1\%)}
     \label{fig:hipotesis}
 \end{figure}
 
-\subsection{Análisis de Parada}
-El tiempo mínimo de simulación se determinó mediante:
-\begin{equation}
-    t_{min} = \frac{z_{1-\alpha/2}^2 \times s^2}{\epsilon^2}
-\end{equation}
-donde:
+\textbf{Conclusión}: Rechazamos $H_0$ ($p < 0.05$). La diferencia es estadística y prácticamente significativa. La reducción promedio del 6.8\% implica que por cada 100 clientes:
 \begin{itemize}
-    \item $z_{1-\alpha/2}$ = 1.96 (95\% confianza)
-    \item $s$ = 0.51 (desviación estándar inicial)
-    \item $\epsilon$ = 0.1 (error máximo permitido)
+    \item Se perderían $\approx$10 clientes con 5 sillas
+    \item Se perderían $\approx$3 clientes con 6 sillas
 \end{itemize}
-
-Resultando $t_{min}$ = 200 horas, validado por la Figura \ref{fig:convergencia}.
-
-
-
 \section{Modelo Matemático}
-\subsection{Formulación como Cola M/M/1/K}
-El sistema se modela como cadena de Markov de nacimiento-muerte con:
+El sistema se modela como una cola \textbf{M/M/1/5} con:
 \begin{itemize}
-    \item Espacio de estados: $S = \{0,1,2,3,4,5\}$
-    \item Tasas de transición:
-    \begin{align*}
-        \lambda_n &= \lambda = 5\ \forall n < 5 \\
-        \mu_n &= \mu = 6\ \forall n > 0
-    \end{align*}
+    \item Tasa de llegada $\lambda = 5$ clientes/hora (Poisson)
+    \item Tasa de servicio $\mu = 6$ clientes/hora (exponencial)
+    \item Capacidad $k = 5$ clientes (1 en servicio + 4 en espera)
 \end{itemize}
 
-\subsection{Ecuaciones de Balance}
-Para probabilidades estacionarias $P_n$:
+\subsection{Parámetros Clave}
 \begin{align*}
-    \lambda P_0 &= \mu P_1 \\
-    (\lambda + \mu) P_n &= \lambda P_{n-1} + \mu P_{n+1},\ 1 \leq n \leq 4 \\
-    \mu P_5 &= \lambda P_4
+    \rho &= \frac{\lambda}{\mu} = \frac{5}{6} \approx 0.8333 \\
+    P_0 &= \frac{1 - \rho}{1 - \rho^{k+1}} = \frac{1 - 0.8333}{1 - 0.8333^6} \approx 0.1667
 \end{align*}
 
-\subsection{Solución del Modelo}
+\subsection{Probabilidades de Estado}
+\[
+P_n = P_0 \cdot \rho^n \quad \text{para } n = 0,1,\dots,5
+\]
+
+\begin{table}[H]
+    \centering
+    \caption{Probabilidades de estado estable}
+    \begin{tabular}{cc}
+        \toprule
+        $n$ clientes & $P_n$ \\
+        \midrule
+        0 & 0.1667 \\
+        1 & 0.1389 \\
+        2 & 0.1157 \\
+        3 & 0.0964 \\
+        4 & 0.0804 \\
+        5 & \textbf{0.0670} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{Métricas Principales}
 \begin{align*}
-    P_n &= \left(\frac{\lambda}{\mu}\right)^n P_0,\ 0 \leq n \leq 5 \\
-    P_0 &= \left[\sum_{k=0}^5 \left(\frac{\lambda}{\mu}\right)^k\right]^{-1} = \frac{1 - \rho}{1 - \rho^{6}} \quad \text{con } \rho = \frac{\lambda}{\mu}
+    L &= \frac{\rho}{1 - \rho} - \frac{(k+1)\rho^{k+1}}{1 - \rho^{k+1}} \approx 1.98 \text{ clientes} \\
+    L_q &= L - (1 - P_0) \approx 1.15 \text{ clientes} \\
+    P_{\text{rechazo}} &= P_5 \approx 6.7\% \\
+    P(W > 0.75\text{h}) &\approx e^{-\mu t}\rho \approx 0.7\% \quad (t=45\text{ min})
 \end{align*}
 
-\subsection{Derivación de Métricas}
-\begin{itemize}
-    \item \textbf{Probabilidad de bloqueo}: $P_5 = \rho^5 P_0$
-    \item \textbf{Clientes promedio}:
-    \begin{align*}
-        L &= \sum_{n=0}^5 n P_n = \frac{\rho[1 - 6\rho^5 + 5\rho^6]}{(1 - \rho)(1 - \rho^6)}
-    \end{align*}
-    \item \textbf{Tiempo de espera}: Distribución condicional exponencial modificada por el truncamiento del sistema
-\end{itemize}
+\section{Comparación con Simulación}
+\begin{table}[H]
+    \centering
+    \caption{Resultados analíticos vs. simulación (1 año)}
+    \begin{tabular}{lSS}
+        \toprule
+        Métrica & {Analítico} & {Simulación} \\
+        \midrule
+        $L$ & 1.98 & 1.9802 \\
+        $L_q$ & 1.15 & 1.2305 \\
+        $P_{\text{rechazo}}$ (\%) & 6.7 & 9.98 \\
+        $P(W > 45\text{min})$ (\%) & 0.7 & 3.51 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 \section{Conclusiones}
 \begin{itemize}
-    \item La probabilidad de bloqueo del 10.1\% indica pérdida significativa de clientes
-    \item El 8.9\% de clientes esperan $>$ 45 minutos, riesgo para la satisfacción
-    \item La simulación valida perfectamente el modelo teórico ($\chi^2$ p-value = 0.62)
-    \item Recomendación: Contratar ayudante o expandir capacidad
+    \item La probabilidad de rechazo ($\approx$\SI{10}{\%}) sugiere que en horas pico se pierde 1 cliente cada 10.
+    \item La espera $>$ 45 minutos es baja ($<$ 4\%), pero podría reducirse aumentando a 6 sillas:
+    \[
+    P_{\text{rechazo}}^{\text{(k=6)}} = \frac{(1-\rho)\rho^6}{1-\rho^{7}} \approx 3\%
+    \]
 \end{itemize}
 
 \end{document}
